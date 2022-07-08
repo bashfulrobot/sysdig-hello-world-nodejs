@@ -1,21 +1,19 @@
-# From base image node
-FROM node:16
-
-# Create app directory
-RUN mkdir -p /usr/src/app
+FROM node:14-alpine AS builder
 WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm ci
+COPY tsconfig*.json ./
+COPY src src
+RUN npm run build
 
-# Copying all the files from your file system to container file system
-COPY package.json .
-
-# Install all dependencies
+FROM node:14-alpine
+ENV NODE_ENV=production
+RUN apk add --no-cache tini
+WORKDIR /usr/src/app
+RUN chown node:node .
+USER node
+COPY package*.json ./
 RUN npm install
-
-# Copy other files too
-COPY ./ .
-
-# Expose the port
-EXPOSE 3030
-
-# Command to run app when intantiate an image
-CMD ["npm","start"]
+COPY --from=builder /usr/src/app/lib/ lib/
+EXPOSE 3000
+ENTRYPOINT [ "/sbin/tini","--", "node", "lib/server.js" ]
