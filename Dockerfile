@@ -7,6 +7,10 @@ COPY src src
 RUN npm run build
 
 FROM node:14-alpine
+LABEL maintainer="Dustin krysak"
+LABEL org.opencontainers.image.authors="Dustin krysak <dustin.krysak+maintainer@sysdig.com>"
+LABEL status="testing"
+LABEL description="This toy container is used for testing pipleline scanning in Sysdig Secure."
 ENV NODE_ENV=production
 RUN apk add --no-cache tini
 WORKDIR /usr/src/app
