@@ -2,7 +2,7 @@
 
 ## Repo Purpose
 
-The main reason for this repo is actually the GitHub Action that will use the Sysdig scanner to check for vulnerabilities on commit. 👍
+The main reason for this repo is actually the GitHub Action that will use the Sysdig scanner to check for vulnerabilities on commit. 👍 
 
 ## Credit
 
