@@ -67,3 +67,8 @@ Submit an [issue][2] or a [pull request][3] if you want to contribute some code.
 [3]: https://github.com/kevinpollet/typescript-docker-multi-stage-build/pulls
 [4]: ./LICENSE.md
 [5]: https://github.com/kevinpollet/typescript-docker-multi-stage-build/actions
+
+
+## Todo
+
+- expand scan results
